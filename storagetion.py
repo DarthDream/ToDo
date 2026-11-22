@@ -4,6 +4,7 @@ def load_tasks():
     try:
         with open("storage.json", "r") as file:
             return json.load(file)
+
     except (FileNotFoundError, json.JSONDecodeError):
         return []
 

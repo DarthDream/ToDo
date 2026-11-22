@@ -1,31 +1,37 @@
 head = None
 
 
-def create_node(task_id, title, description):
+def create_node(task_id, title, description, completed=False):
     return {
         "id": task_id,
         "title": title,
         "description": description,
-        "completed": False,
+        "completed": completed,
         "next": None
     }
 
 
-def add_node(task_id, title, description):
+def add_node(task_id, title, description, completed=False):
     global head
 
-    new_node = create_node(task_id, title, description)
+    new_node = create_node(task_id, title, description, completed)
 
     if head is None:
         head = new_node
-        return
+        return True
 
     current = head
 
     while current["next"] is not None:
+        if current["id"] == task_id:
+            return False
         current = current["next"]
 
+    if current["id"] == task_id:
+        return False
+
     current["next"] = new_node
+    return True
 
 
 def show_nodes():
@@ -37,10 +43,10 @@ def show_nodes():
 
     while current is not None:
         print(f'''
-    ID: {current["id"]}
-    Title: {current["title"]}
-    Description: {current["description"]}
-    Completed: {current["completed"]}
+ID: {current["id"]}
+Title: {current["title"]}
+Description: {current["description"]}
+Completed: {current["completed"]}
 ''')
         current = current["next"]
 
@@ -87,7 +93,6 @@ def update_node(task_id, title, description):
 
     node["title"] = title
     node["description"] = description
-
     return True
 
 
@@ -98,5 +103,54 @@ def complete_node(task_id):
         return False
 
     node["completed"] = True
-
     return True
+
+
+def show_completed():
+    current = head
+
+    while current is not None:
+        if current["completed"]:
+            print(current["id"], current["title"])
+
+        current = current["next"]
+
+
+def show_pending():
+    current = head
+
+    while current is not None:
+        if not current["completed"]:
+            print(current["id"], current["title"])
+
+        current = current["next"]
+
+
+def get_all_tasks():
+    tasks = []
+    current = head
+
+    while current is not None:
+        tasks.append({
+            "id": current["id"],
+            "title": current["title"],
+            "description": current["description"],
+            "completed": current["completed"]
+        })
+
+        current = current["next"]
+
+    return tasks
+
+
+def load_nodes(tasks):
+    global head
+    head = None
+
+    for task in tasks:
+        add_node(
+            task["id"],
+            task["title"],
+            task["description"],
+            task["completed"]
+        )
