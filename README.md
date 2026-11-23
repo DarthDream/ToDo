@@ -64,7 +64,7 @@ python main.py
 
 This project uses Linked List to manage tasks and Queue (FIFO) to organize pending tasks.
 
-JSON is used to save and load task data, so tasks remain available after restarting the application.
+Stack.py is used to save and load task data, so tasks remain available after restarting the application.
 
 👨‍💻 Developer
 
