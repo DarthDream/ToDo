@@ -28,8 +28,6 @@ Save and Load Tasks using JSON
 
 Python
 
-JSON
-
 Linked List
 
 Queue
