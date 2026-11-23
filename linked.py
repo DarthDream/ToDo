@@ -2,17 +2,17 @@
 head = None
 
 
-def create_node(task):
+def create_node(data):
     return {
-        "data": task,
+        "data": data,
         "next": None
     }
 
 
-def append(task):
+def append(data):
     global head
 
-    new_node = create_node(task)
+    new_node = create_node(data)
 
     if head is None:
         head = new_node
@@ -36,6 +36,17 @@ def get_all_tasks():
 
     return tasks
 
+def find_task(task_id):
+    current = head
+
+    while current is not None:
+        if current["data"]["id"] == task_id:
+            return current["data"]
+
+        current = current["next"]
+
+    return None
+
 
 def display():
     current = head
@@ -47,20 +58,4 @@ def display():
     while current is not None:
         print(current["data"])
         current = current["next"]
-
-
-def clear():
-    global head
-    head = None
-
-
-def find_task(task_id):
-    current = head
-
-    while current is not None:
-        if current["data"]["id"] == task_id:
-            return current["data"]
-
-        current = current["next"]
-
-    return None
+        
