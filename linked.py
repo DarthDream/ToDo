@@ -1,4 +1,3 @@
-
 head = None
 
 
@@ -58,4 +57,3 @@ def display():
     while current is not None:
         print(current["data"])
         current = current["next"]
-        
