@@ -38,12 +38,12 @@ Deque
 
 ToDo/
 │
-├── main.py
+├── app.py
 ├── system.py
 ├── linked.py
-├── task_queue.py
-├── storage.py
-├── tasks.json
+├── queue.py
+├── stack.py
+├── tasks.py
 └── README.md
 
 ⚙️ How to Run
